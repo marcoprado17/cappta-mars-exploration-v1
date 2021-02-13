@@ -17,9 +17,9 @@ function CustomNavbar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link><Link to="/">Home</Link></Nav.Link>
-                    <Nav.Link><Link to="/instructions">Instructions</Link></Nav.Link>
-                    <Nav.Link><Link to="/docs">Docs</Link></Nav.Link>
+                    <Link className={styles.navLink} to="/">Home</Link>
+                    <Link className={styles.navLink} to="/instructions">Instructions</Link>
+                    <Link className={styles.navLink} to="/docs">Docs</Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
