@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import instructionsService from '../services/instructionsService';
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown';
 import styles from './Instructions.module.css';
 
 function Instructions() {
