@@ -4,13 +4,18 @@ import {
     Form,
     Row,
     Col,
-    Button
+    Button,
+    Alert
 } from 'react-bootstrap';
 import RealTimeExploration from "../components/RealTimeExploration";
 import styles from './Home.module.css';
+import marsExplorationService from '../services/marsExplorationService';
 
 function Home() {
     const [input, setInput] = useState('');
+    const [result, setResult] = useState('');
+    const [processingInput, setProcessingInput] = useState(false);
+    const [showInputError, setShowInputError] = useState(false);
 
     useEffect(() => {
         document.title = 'Mars Exploration | Home';
@@ -28,16 +33,44 @@ function Home() {
                                 onChange={(e) => setInput(e.target.value)}
                             />
                         </Form.Group>
-                        <Button className={styles.processInputButton} variant="primary" type="submit"
+                        {
+                            showInputError ?
+                            <Alert variant="danger" onClose={() => setShowInputError(false)} dismissible>
+                                <Alert.Heading>Input error!</Alert.Heading>
+                                <p>
+                                    Check if the input respect the instructions and try again.
+                                </p>
+                            </Alert>
+                            :
+                            null
+                        }
+                        <Button className={styles.processInputButton} disabled={processingInput} variant="primary" type="submit"
                             onClick={(e) => {
                                 e.preventDefault();
+                                setProcessingInput(true);
+                                setShowInputError(false);
+                                try {
+                                    const states = marsExplorationService.processInput(input);
+                                    const lastState = states[states.length-1];
+                                    let tempResult = '';
+                                    for(let probeId in lastState.probes) {
+                                        const probeInfo = lastState.probes[probeId];
+                                        tempResult += `${probeInfo.x} ${probeInfo.y} ${probeInfo.direction}\n`;
+                                    }
+                                    setResult(tempResult);
+                                } catch(err) {
+                                    console.warn(err);
+                                    setShowInputError(true);
+                                } finally {
+                                    setProcessingInput(false);
+                                }
                             }}
                         >
-                            Process Input
+                            {processingInput ? 'Processing...' : 'Process Input'}
                         </Button>
                         <Form.Group>
                             <Form.Label>Output</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="" />
+                            <Form.Control value={result} as="textarea" rows={3} placeholder="" />
                         </Form.Group>
                     </Form>
                 </Col>

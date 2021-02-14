@@ -8,6 +8,14 @@ The project solution is hosted on [mars-exploration.cappta.mprado.me](mars-explo
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Additional Considerations
+
+* If the input is invalid or have an invalid character, an error message will be showed.;
+* If there is none probe, an error message will be showed;
+* If a probe starts at an invalid position, an error message will be showed;
+* If a probe starts in point with a previous probe occupying the same place, the last probe moves will be ignored;
+* In the simulation, is cosidered that a probe appears in the field after all moves of the previous probe.
+
 ## Local Setup
 
 ```sh
