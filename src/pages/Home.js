@@ -55,14 +55,16 @@ function Home() {
                                 setProcessingInput(true);
                                 setShowInputError(false);
                                 try {
-                                    const {states, fieldDimensions} = marsExplorationService.processInput(input);
+                                    const {inputInfo, marsSimulation} = marsExplorationService.processInput(input);
+                                    const fieldDimensions = inputInfo.fieldDimensions;
+                                    const states = marsSimulation.states;
                                     setStates(states);
                                     setFieldDimensions(fieldDimensions);
                                     const lastState = states[states.length-1];
                                     let tempResult = '';
                                     for(let probeId in lastState.probes) {
-                                        const probeInfo = lastState.probes[probeId];
-                                        tempResult += `${probeInfo.x} ${probeInfo.y} ${probeInfo.direction}\n`;
+                                        const probeState = lastState.probes[probeId];
+                                        tempResult += `${probeState.x} ${probeState.y} ${probeState.direction}\n`;
                                     }
                                     setResult(tempResult);
                                 } catch(err) {
