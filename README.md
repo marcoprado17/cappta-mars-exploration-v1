@@ -54,5 +54,5 @@ firebase deploy --only hosting
 
 **ProbeInfo**: Represents the information contained in the input of a specific probe (initial position, initial direction and commands).
 
-**MarsSimulation**: Hold a reference to InputInfo and for an array of MarsState representing all states in the probes moving. It also contains a method to
+**MarsSimulation**: Holds a reference to InputInfo and for an array of MarsState representing all states in the probes moving. It also contains a method to
 add probes in the field and another method to process probe moves generating a new MarsState that will be added to his array of MarsState.
