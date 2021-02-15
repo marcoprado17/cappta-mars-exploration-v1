@@ -10,9 +10,11 @@ import styles from './CustomNavbar.module.css';
 function CustomNavbar() {
     return (
         <Navbar bg="light" expand="lg" className={styles.navbar}>
-            <Navbar.Brand href="#home">
-                <img className={styles.marsIcon} src='/img/mars-icon.png'></img>
-                Mars Exploration
+            <Navbar.Brand>
+                <Link className={styles.navLink} to="/">
+                    <img className={styles.marsIcon} src='/img/mars-icon.png'></img>
+                    Mars Exploration
+                </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
