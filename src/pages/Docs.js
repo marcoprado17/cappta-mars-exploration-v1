@@ -32,7 +32,6 @@ function Docs() {
     } else if(loadingDocs) {
         return (
             <Layout>
-                Carregando...
             </Layout>
         )
     } else {

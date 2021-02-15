@@ -16,6 +16,11 @@ function Home() {
     const [result, setResult] = useState('');
     const [processingInput, setProcessingInput] = useState(false);
     const [showInputError, setShowInputError] = useState(false);
+    const [states, setStates] = useState([]);
+    const [fieldDimensions, setFieldDimensions] = useState({
+        maxX: -1,
+        maxY: -1
+    });
 
     useEffect(() => {
         document.title = 'Mars Exploration | Home';
@@ -50,7 +55,9 @@ function Home() {
                                 setProcessingInput(true);
                                 setShowInputError(false);
                                 try {
-                                    const states = marsExplorationService.processInput(input);
+                                    const {states, fieldDimensions} = marsExplorationService.processInput(input);
+                                    setStates(states);
+                                    setFieldDimensions(fieldDimensions);
                                     const lastState = states[states.length-1];
                                     let tempResult = '';
                                     for(let probeId in lastState.probes) {
@@ -70,12 +77,12 @@ function Home() {
                         </Button>
                         <Form.Group>
                             <Form.Label>Output</Form.Label>
-                            <Form.Control value={result} as="textarea" rows={3} placeholder="" />
+                            <Form.Control readOnly value={result} as="textarea" rows={3} placeholder="" />
                         </Form.Group>
                     </Form>
                 </Col>
                 <Col>
-                    <RealTimeExploration/>
+                    <RealTimeExploration states={states} fieldDimensions={fieldDimensions}/>
                 </Col>
             </Row>
         </Layout>

@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+    margin-bottom: 20px;
+}
+
+.rowContainer {
+}
+
+.terrainBlockImg {
+    width: 100%;
+    min-width: 32px;
+    height: auto;
+    border: 1px solid black;
+}
+
+.button {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.stepInfo {
+    margin-right: 8px;
+}

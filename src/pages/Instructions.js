@@ -32,7 +32,6 @@ function Instructions() {
     } else if(loadingInstructions) {
         return (
             <Layout>
-                Carregando...
             </Layout>
         )
     } else {

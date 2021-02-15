@@ -39,14 +39,17 @@ class MarsExplorationService {
                 const newStateCandidate = this._processCommand(currState, probeInfo.id, probeCommand);
                 if(this._hasProbeColisionWithProbeOrBorders(newStateCandidate, fieldDimensions)) {
                     // Ignoring the moves of this probe
-                    continue;
+                    break;
                 } else {
                     console.log(newStateCandidate);
                     states.push(newStateCandidate);
                 }
             }
         }
-        return states;
+        return {
+            states,
+            fieldDimensions
+        };
     }
 
     _extractInputLines(input) {
